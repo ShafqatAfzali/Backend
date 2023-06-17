@@ -1,6 +1,7 @@
 const express=require("express")
 const cors = require("cors")
 const server = express();
+const path=require(path);
 const PORT=process.env.PORT || 3000;
 const mysql=require("mysql")
 const bcrypt = require("bcrypt")
@@ -30,6 +31,10 @@ function autentiser(req,res,next){
         next()
     })
 }
+
+server.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 server.get("/api/data_tilgang",autentiser,async (req,res)=>{
     const connection = mysql.createConnection({
