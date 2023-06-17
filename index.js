@@ -1,4 +1,5 @@
 const express=require("express")
+const cors = require("cors")
 const mysql=require("mysql")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -11,6 +12,8 @@ const bodyParser = require('body-parser')
 const port=process.env.PORT || 3000;
 const server = express();
 server.use(bodyParser.json())
+server.use(cors())
+server.use(express.json())
 server.use(cookie_parser())
 
 
