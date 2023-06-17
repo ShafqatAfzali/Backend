@@ -1,5 +1,7 @@
 const express=require("express")
 const cors = require("cors")
+const server = express();
+const PORT=process.env.PORT || 3000;
 const mysql=require("mysql")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -9,8 +11,6 @@ require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const bodyParser = require('body-parser')
 
-const port=process.env.PORT || 3000;
-const server = express();
 server.use(bodyParser.json())
 server.use(cors())
 server.use(express.json())
@@ -387,4 +387,4 @@ server.post('/api/webhook', express.raw({type: 'application/json'}), (req, res) 
     res.status(200).json({success:true})
 });
 
-server.listen(port)
+server.listen(PORT,()=>{console.log(`app listening on port: ${PORT} `)})
